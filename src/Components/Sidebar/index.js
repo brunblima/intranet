@@ -1,25 +1,27 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import NavHeader from "../NavHeader";
 import NavButton from "../NavButton";
-import SubMenu from "../SubMenu";
 import { Container } from "./styles";
-import { VscHome, VscSettingsGear, VscChevronDown } from "react-icons/vsc";
+import { VscHome, VscSettingsGear } from "react-icons/vsc";
 import { BiSupport } from "react-icons/bi";
+import LogoutButton from "../LogoutButton/";
 
 const menuItems = [
   {
     name: "Início",
     icon: <VscHome size={24} />,
+    path: "/home",
   },
   {
     name: "Suporte",
     icon: <BiSupport size={24} />,
-    items: ["Abrir Chamado", "Visualizar Chamados"],
+    path: "/support",
   },
   {
     name: "Settings",
     icon: <VscSettingsGear size={24} />,
-    items: ["Display", "Theme", "Interface"],
+    path: "/settings",
   },
 ];
 
@@ -27,23 +29,25 @@ const Sidebar = () => {
   const [activeItem, setActiveItem] = useState("");
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [isSidebarFixed, setIsSidebarFixed] = useState(false); // Novo estado para rastrear se o sidebar está fixo
+  const [isSidebarFixed, setIsSidebarFixed] = useState(false);
+  const navigate = useNavigate();
 
   const handleMouseEnter = () => {
-    if (!isSidebarFixed) setIsHovered(true); // Verifica se o sidebar não está fixo antes de definir isHovered para true
+    if (!isSidebarFixed) setIsHovered(true);
   };
 
   const handleMouseLeave = () => {
-    if (!isSidebarFixed) setIsHovered(false); // Verifica se o sidebar não está fixo antes de definir isHovered para false
+    if (!isSidebarFixed) setIsHovered(false);
   };
 
   const handleClick = (item) => {
-    setActiveItem((prevActiveItem) => (item !== prevActiveItem ? item : ""));
+    setActiveItem(item.name);
+    navigate(item.path);
   };
 
   const handleHeaderClick = () => {
     setIsSidebarExpanded((prevIsExpanded) => !prevIsExpanded);
-    setIsSidebarFixed((prevIsFixed) => !prevIsFixed); // Inverte o estado de fixação do sidebar
+    setIsSidebarFixed((prevIsFixed) => !prevIsFixed);
   };
 
   return (
@@ -54,27 +58,20 @@ const Sidebar = () => {
     >
       <NavHeader onClick={handleHeaderClick} />
       {menuItems.map((item) => (
-        <div key={item.name}>
-          <NavButton
-            onClick={handleClick}
-            name={item.name}
-            icon={item.icon}
-            isActive={activeItem === item.name}
-            hasSubNav={!!item.items}
-            isOpen={item.isOpen}
-            isHovered={isHovered}
-            isSidebarExpanded={isSidebarExpanded}
-          />
-          {item.items && (
-            <SubMenu
-              activeItem={activeItem}
-              handleClick={handleClick}
-              item={item}
-              isHovered={isHovered}
-            />
-          )}
-        </div>
+        <NavButton
+          key={item.name}
+          onClick={() => handleClick(item)}
+          name={item.name}
+          icon={item.icon}
+          isActive={activeItem === item.name}
+          isHovered={isHovered}
+          isSidebarExpanded={isSidebarExpanded}
+        />
       ))}
+      <LogoutButton
+        isHovered={isHovered}
+        isSidebarExpanded={isSidebarExpanded}
+      />
     </Container>
   );
 };

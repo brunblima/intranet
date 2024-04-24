@@ -10,19 +10,19 @@ const NavButton = ({
   hasSubNav,
   isOpen,
   hasBullet,
-  isHovered,
+  isHovered
 }) => (
   <Button type="button" onClick={() => onClick(name)} isActive={isActive}>
     {icon && <span>{icon}</span>}
-    {hasBullet && <SpanContainer>&bull; </SpanContainer>}
+    {/* {hasBullet && <SpanContainer>&bull; </SpanContainer>} */}
 
-    {isHovered && <span>{name}</span>}
+    { isHovered && <span>{name}</span>}
     
-    {hasSubNav && isHovered && (
+    {/* {hasSubNav && isHovered && (
       <Icon isOpen={isOpen} rotateIcon={isOpen}>
         <VscChevronDown />
       </Icon>
-    )}
+    )} */}
   </Button>
 );
 

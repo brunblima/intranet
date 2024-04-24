@@ -1,12 +1,15 @@
 import React from "react";
-import Login from "./Screens/Login";
-import Home from "./Screens/Home";
+import { BrowserRouter as Router } from "react-router-dom";
+import MyRoutes from "./routes/routes";
+import { AuthProvider } from "./context/index";
 
 function App() {
   return (
-    <>
-      <Home />
-    </>
+    <Router>
+      <AuthProvider>
+        <MyRoutes />
+      </AuthProvider>
+    </Router>
   );
 }
 

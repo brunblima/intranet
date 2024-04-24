@@ -2,21 +2,20 @@ import React, { useRef } from "react";
 import { SubNav } from "./styles";
 import NavButton from "../NavButton";
 
-const SubMenu = ({ item, activeItem, handleClick }) => {
+const SubMenu = ({ item, activeItem, handleSubMenuClick, isHovered }) => {
   const navRef = useRef(null);
 
-  const isSubNavOpen = (item, items) =>
-    items.some((i) => i === activeItem) || item === activeItem;
-
   return (
-    <SubNav isOpen={isSubNavOpen(item.name, item.items)}>
+    <SubNav isOpen={isHovered && activeItem === item.name}>
       <div ref={navRef}>
         {item?.items.map((subItem) => (
           <NavButton
-            onClick={handleClick}
+            key={subItem}
             name={subItem}
             isActive={activeItem === subItem}
             hasBullet={true}
+            isHovered={isHovered}
+            onClick={() => handleSubMenuClick(subItem)} 
           />
         ))}
       </div>
