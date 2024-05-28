@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import themes from "../../themes/themes";
 
 export const Button = styled.button`
   position: relative;
@@ -21,17 +22,16 @@ export const Button = styled.button`
   ${({ isActive }) =>
     isActive &&
     `
-    background: #004fee;
+    background: ${themes.BUTTON};
   `}
 
   &:hover {
-    background: #2e303e;
+    background: ${themes.CINZAPADRAO};
   }
 
   &:hover span {
     color: #e1ecff;
   }
-
 `;
 
 export const Icon = styled.span`
@@ -40,9 +40,9 @@ export const Icon = styled.span`
   color: #e1ecff;
   transform: rotate(${({ rotateIcon }) => (rotateIcon ? "180deg" : "0deg")});
   transition: transform 0.3s;
-
 `;
 
 export const SpanContainer = styled.span`
-  padding-left: 6px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 `;

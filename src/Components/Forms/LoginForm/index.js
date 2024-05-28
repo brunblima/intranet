@@ -7,20 +7,22 @@ import {
   IconSpan,
   InputField,
   SubmitButton,
-  ForgotPasswordLink,
 } from "./styles";
+import Alert from "../../Alert";
+import ChangePasswordModal from "../ChangePassword";
 
+import { useAuth } from "../../../context";
 import { VscAccount, VscLock } from "react-icons/vsc";
-import { useAuth } from "../../context";
 
 function LoginForm() {
-  const { signIn } = useAuth();
+  const { signIn, showChangePasswordModal, changePassword, setShowChangePasswordModal } = useAuth();
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Previne o comportamento padrão do formulário
+    e.preventDefault();
 
     if (!email || !password) {
       setErrorMessage("Por favor, digite seu email e senha.");
@@ -37,10 +39,31 @@ function LoginForm() {
     }
   };
 
+  const handleChangePassword = async () => {
+    if (!newPassword) {
+      setErrorMessage("Por favor, digite a nova senha.");
+      return;
+    }
+
+    try {
+      await changePassword(newPassword);
+      setNewPassword("");
+    } catch (error) {
+      console.error("Erro ao alterar a senha:", error.message);
+      setErrorMessage("Erro ao alterar a senha. Por favor, tente novamente.");
+    }
+  };
+
+  const closeModal = () => {
+    setNewPassword(""); // Clear new password field
+    setErrorMessage(""); // Clear any previous error
+    setShowChangePasswordModal(false); // Close the modal
+  };
+
   return (
     <LoginContainer>
       <Heading2>Entrar</Heading2>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <TextBox>
           <InputField
             type="email"
@@ -64,10 +87,23 @@ function LoginForm() {
         <SubmitButton type="submit" onClick={handleSubmit}>
           Entrar
         </SubmitButton>
-        <ForgotPasswordLink href="https://website.com">
+        {/* <ForgotPasswordLink href="https://website.com">
           Esqueceu sua senha?
-        </ForgotPasswordLink>
+        </ForgotPasswordLink> */}
       </Form>
+
+      {showChangePasswordModal && (
+        <ChangePasswordModal
+          newPassword={newPassword}
+          setNewPassword={setNewPassword}
+          handleChangePassword={handleChangePassword}
+          closeModal={closeModal} 
+        />
+      )}
+
+      {errorMessage && (
+        <Alert message={errorMessage} onClose={() => setErrorMessage(null)} />
+      )}
     </LoginContainer>
   );
 }

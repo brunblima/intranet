@@ -4,7 +4,7 @@ import AppRoutes from "./app.routes";
 import { useAuth } from "../context/index";
 
 function MyRoutes() {
-  const {signed} = useAuth();
+  const { signed } = useAuth();
 
   return signed ? <AppRoutes /> : <AuthRoutes />;
 }

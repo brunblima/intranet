@@ -1,11 +1,12 @@
-import { TextBox, IconSpan, InputField } from "./styles";
+import styled from "styled-components";
+import themes from "../../themes/themes";
 
-function Input() {
-  return (
-    
-      <InputField />
-    
-  );
-}
+export const Input = styled.input`
+  width: 300px;
+  height: 30px;
+  border: 1px solid ${themes.BORDER};
+  border-radius: 4px;
+  padding: 5px;
+`;
 
 export default Input;

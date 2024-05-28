@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import themes from "../../themes/themes"
 
 export const Button = styled.button`
   position: relative;
@@ -23,11 +24,11 @@ export const Button = styled.button`
   ${({ isActive }) =>
     isActive &&
     `
-    background: #004fee;
+    background: ${themes.BUTTON};
   `}
 
   &:hover {
-    background: #2e303e;
+    background: ${themes.CINZAPADRAO};
   }
 
   &:hover span {
