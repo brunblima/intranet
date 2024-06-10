@@ -2,12 +2,8 @@ import styled from "styled-components";
 import themes from "../../themes/themes";
 
 export const ModalOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,14 +11,13 @@ export const ModalOverlay = styled.div`
 
 export const ModalContent = styled.div`
   background-color: ${themes.BACKGROUND};
-  padding: 25px;
   border-radius: 8px;
-  width: 450px;
+  width: 100%;
 `;
 
 export const ImageContainer = styled.div`
-  width: 40%;
-  height: 40%;
+  width: 200px;
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,7 +43,7 @@ export const ButtonClose = styled.button`
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  width: 100%;
+  width: 20%;
   padding: 12px;
   background-color: ${themes.BUTTON_CLOSE};
   color: ${themes.FONT};
@@ -77,6 +72,7 @@ export const GalleryImages = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   border-radius: 6px;
   padding: 30px;
+  gap: 20px;
 `;
 
 export const FileInputButton = styled.label`

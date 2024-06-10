@@ -1,6 +1,3 @@
-import { db } from "../../config/firebaseConfig";
-import { collection, getDocs } from "firebase/firestore";
-
 const getNotices = async () => {
   const notices = [
     {

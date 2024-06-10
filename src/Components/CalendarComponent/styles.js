@@ -14,6 +14,7 @@ export const MonthWrapper = styled.div`
   border: 1px solid #ccc;
   box-sizing: border-box;
   border-radius: 10px;
+  overflow: hidden;
 `;
 
 export const MonthTitle = styled.h2`
@@ -63,7 +64,7 @@ export const Day = styled.div`
     hasHoliday && isWeekend ? "white" : isWeekend ? "red" : "black"};
   font-weight: 500;
   border-radius: 5px;
-  padding: 10px;
+  padding: 0.5em;
   box-sizing: border-box;
   display: flex;
   align-items: center;

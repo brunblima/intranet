@@ -7,7 +7,6 @@ import {
   NoticeImage,
   ImageContainer,
   Container,
-  CarouselItem,
 } from "./styles";
 import { getNotices } from "../../utils/noticeBoardData";
 import CalendarComponent from "../CalendarComponent";

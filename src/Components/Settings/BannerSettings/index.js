@@ -1,19 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Modal from "../Modal";
-import {
-  MainContainer,
-  BannerContainer,
-  Image,
-  Placeholder,
-  EditImageButton,
-} from "./styles";
-import { Button } from "../Controllers/Button";
-import Carousel from "../Carousel";
-import { db } from "../../config/firebaseConfig";
+import Modal from "../../Modal";
+import { db } from "../../../config/firebaseConfig";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
-const Banner = () => {
-  const [showModal, setShowModal] = useState(false);
+const BannerSettings = () => {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
@@ -43,21 +33,14 @@ const Banner = () => {
   };
 
   return (
-    <MainContainer>
-      <BannerContainer>
-        <Carousel images={images} />
-      
-
-        {showModal && (
-          <Modal
-            onClose={() => setShowModal(false)}
-            onSelectImages={handleImageSelect}
-            initialSelectedImages={images}
-          />
-        )}
-      </BannerContainer>
-    </MainContainer>
+    <div>
+      <h2>Configurações de Banner</h2>
+      <Modal
+        onSelectImages={handleImageSelect}
+        initialSelectedImages={images}
+      />
+    </div>
   );
 };
 
-export default Banner;
+export default BannerSettings;

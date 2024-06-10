@@ -1,25 +1,37 @@
 import styled from "styled-components";
-import themes from "../../themes/themes"
+import themes from "../../themes/themes";
 
 export const NoticeBoardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 1%;
+  gap: 3em;
   justify-content: center;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+  }
 `;
 
 export const NoticeCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: start;
-  width: 21%;
+  align-items: center;
+  width: 27%;
   height: auto;
   background-color: ${themes.BACKGROUND};
-  border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  padding: 0 10px 0 10px;
+  padding: 10px;
+  
+  @media (max-width: 768px) {
+    width: 70%;
+  }
 `;
 
 export const ImageContainer = styled.div`
@@ -32,6 +44,7 @@ export const NoticeImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  aspect-ratio: auto;
 `;
 
 export const Container = styled.div`
@@ -44,15 +57,6 @@ export const NoticeTitle = styled.h3`
   margin-bottom: 10px;
   font-size: 18px;
   color: #333;
-`;
-
-export const CarouselItem = styled.div`
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 20px;
-  color: #555;
-  text-align: center;
-  width: 100%;
 `;
 
 export const NoticeContent = styled.div`

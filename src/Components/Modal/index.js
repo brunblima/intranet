@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "../Controllers/Button";
-import { storage, db } from "../../config/firebaseConfig";
+import { storage } from "../../config/firebaseConfig";
 import { ref, listAll, getDownloadURL, uploadBytes } from "firebase/storage";
-import { doc, setDoc } from "firebase/firestore";
 import Loading from "../Animation/Loading";
 import {
   ModalOverlay,
@@ -17,9 +16,9 @@ import {
   FileInput,
 } from "./styles";
 
-import { FaRegImage } from "react-icons/fa6";
+import { RiImageAddFill } from "react-icons/ri";
 
-const Modal = ({ onClose, onSelectImages, initialSelectedImages }) => {
+const Modal = ({ onSelectImages, initialSelectedImages }) => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedImages, setSelectedImages] = useState(initialSelectedImages);
@@ -56,7 +55,7 @@ const Modal = ({ onClose, onSelectImages, initialSelectedImages }) => {
 
   const handleSave = () => {
     onSelectImages(selectedImages);
-    onClose();
+
   };
 
   const handleFileInputChange = async (event) => {
@@ -74,7 +73,7 @@ const Modal = ({ onClose, onSelectImages, initialSelectedImages }) => {
   return (
     <ModalOverlay>
       <ModalContent>
-        <h2>Selecione as imagens</h2>
+        <h3>Selecione as imagens</h3>
         <GalleryImages>
           {loading ? (
             <Loading />
@@ -95,20 +94,18 @@ const Modal = ({ onClose, onSelectImages, initialSelectedImages }) => {
           )}
         </GalleryImages>
         <Container>
-          <FileInputButton htmlFor="fileInput">
-            <FaRegImage size={20} /> Adicionar Imagem
-          </FileInputButton>
+          <Button htmlFor="fileInput" style={{ width: 150, height: 35 }}>
+            <RiImageAddFill size={20} /> Adicionar Imagem
+          </Button>
           <FileInput
             id="fileInput"
             type="file"
             accept="image/*"
             onChange={handleFileInputChange}
           />
-        </Container>
-
-        <Container>
-          <UploadButton onClick={handleSave}>Salvar</UploadButton>
-          <ButtonClose onClick={onClose}>Fechar</ButtonClose>
+          <Button onClick={handleSave} style={{ width: 100, height: 35 }}>
+            Salvar
+          </Button>
         </Container>
       </ModalContent>
     </ModalOverlay>

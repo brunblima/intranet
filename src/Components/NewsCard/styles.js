@@ -4,23 +4,34 @@ import themes from "../../themes/themes";
 
 export const ContainerNews = styled.div`
   display: flex;
-  flex: wrap;
-  justify-content: space-evenly;
-  margin-bottom: 5%;
+  flex-wrap: wrap;
+  gap: 3rem;
+  justify-content: center;
+  padding-bottom: 40px;
+
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+  }
 `;
 
 export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 29%;
-  height: auto;
-  border: 1px solid ${themes.BORDER};
+  width: 27%;
+  height: 350px;
+  background-color: ${themes.BACKGROUND};
   border-radius: 8px;
-  padding: 15px;
-  box-sizing: border-box;
-  vertical-align: top;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+
+  @media (max-width: 768px) {
+    width: 70%;
+  }
 `;
 
 export const Title = styled.h1`
@@ -41,7 +52,7 @@ export const Body = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 5%;
   padding-bottom: 24px;
 `;
 

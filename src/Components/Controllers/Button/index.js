@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import themes from "../../../themes/themes"
 
@@ -12,7 +11,7 @@ export const Button = styled.button`
   cursor: pointer;
   background-color: ${themes.CINZAPADRAO};
   color: ${themes.FONT};
-  border-radius: 6px;
+  border-radius: 4px;
 
   &:hover {
     background-color: ${themes.AZULPADRAO};

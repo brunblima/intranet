@@ -1,9 +1,9 @@
 import { db, authfb } from "../../config/firebaseConfig";
-import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
   fetchSignInMethodsForEmail,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 
 export const updateUserData = async (userData, temporaryPassword) => {

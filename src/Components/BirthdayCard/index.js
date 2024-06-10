@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { BirthdayCardWrapper, Image, Title, CarouselItem } from "./styles";
+import {
+  BirthdayCardWrapper,
+  Image,
+  Title,
+  CarouselItem,
+  Container,
+} from "./styles";
 import { db } from "../../config/firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 
@@ -53,14 +59,16 @@ const BirthdayCard = () => {
         src={require("../../assets/imgFelizAniversario01.jpg")}
         alt="Aniversariantes do Mês"
       />
-      <Title>Aniversariantes do Mês</Title>
-      {currentBirthday ? (
-        <CarouselItem>
-          {`Dia ${currentBirthday.day} - ${currentBirthday.username}`}
-        </CarouselItem>
-      ) : (
-        <CarouselItem>Não há aniversariantes este mês.</CarouselItem>
-      )}
+      <Container>
+        <Title>Aniversariantes do Mês</Title>
+        {currentBirthday ? (
+          <CarouselItem>
+            {`Dia ${currentBirthday.day} - ${currentBirthday.username}`}
+          </CarouselItem>
+        ) : (
+          <CarouselItem>Não há aniversariantes este mês.</CarouselItem>
+        )}
+      </Container>
     </BirthdayCardWrapper>
   );
 };

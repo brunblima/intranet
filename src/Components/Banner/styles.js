@@ -30,7 +30,7 @@ export const AddImageButton = styled.button`
 export const Image = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  aspect-ratio: auto;
 `;
 
 export const EditImageButton = styled.button`

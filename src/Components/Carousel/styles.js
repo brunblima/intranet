@@ -16,7 +16,7 @@ export const CarouselContainer = styled.div`
 export const CarouselSlide = styled.div`
   display: ${({ active }) => (active ? "block" : "none")};
   width: 100%;
-  height: 350px;
+  height: 400px;
   img {
     width: 100%;
     height: 100%;

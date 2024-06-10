@@ -45,7 +45,7 @@ const menuItems = [
     path: "/calendario",
   },
   {
-    name: "Settings",
+    name: "Ajustes",
     icon: <VscSettingsGear size={24} />,
     path: "/ajustes",
   },
